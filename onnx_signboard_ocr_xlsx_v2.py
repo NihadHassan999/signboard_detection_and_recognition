@@ -125,7 +125,7 @@ while True:
         break
 
 # Save the DataFrame to an Excel file
-paddleocr_df.to_excel("paddleocr_output.xlsx", index=False)
+paddleocr_df.to_excel("store_names.xlsx", index=False)
 
 out.release()
 
