@@ -53,11 +53,11 @@ Signboard_Detection_And_Recognition using fine-tuned YOLO V8 model with ImageNet
 <br>
 
 
-<img src="readme_media\results.png" alt="your alt text" width="300"/>
+<img src="readme_media\results.png" alt="your alt text" width="600"/>
 
 <br>
 
-<img src="readme_media\val_batch0_pred.jpg" alt="your alt text" width="300"/>
+<img src="readme_media\val_batch0_pred.jpg" alt="your alt text" width="600"/>
 
 <img src="readme_media\output_video2-ezgif.gif" alt="your alt text" width="600"/>
 
