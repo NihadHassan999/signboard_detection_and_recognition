@@ -1,6 +1,6 @@
 Signboard_Detection_And_Recognition
 ====================================
-Signboard_Detection_And_Recognition using fine-tuned YOLO V8 model with ImageNet weights trained on Roboflow custom dataset (Runs CPU Inference Using ONNX) and text extraction using PaddleOCR.
+Signboard Detection And Recognition using fine-tuned YOLO V8 model with ImageNet weights trained on Roboflow custom dataset (Runs CPU Inference Using ONNX) and text extraction using PaddleOCR.
 
 <p align="center">
   <img src="readme_media\output_video1-ezgif.gif" width="300" />
