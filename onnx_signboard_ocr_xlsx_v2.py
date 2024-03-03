@@ -2,7 +2,7 @@ import os
 import cv2
 import threading
 from yolov8 import YOLOv8
-from paddleocr import PPStructure, save_structure_res
+from paddleocr import PPStructure
 import pandas as pd
 
 # Initialize yolov8 object detector
@@ -54,9 +54,9 @@ frame_width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
 frame_height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
 
 # Define the codec and create a VideoWriter object for the processed video
-output_video_path = "output_videos/output_video.avi"
-fourcc = cv2.VideoWriter_fourcc(*'MJPG')  # Change codec here
-out = cv2.VideoWriter(output_video_path, fourcc, fps, (640, 640))
+output_video_path = "output_videos/output_video.mp4"
+fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Change codec here
+out = cv2.VideoWriter(output_video_path, fourcc, fps, (frame_width, frame_height))
 
 # Define the directory to save cropped images
 output_dir = "cropped_regions"
@@ -77,6 +77,11 @@ ocr_interval = 10
 frames_since_last_ocr = 0
 save_path = ""  # Define save_path outside the loop
 
+# Define the codec and create a VideoWriter object to save the output video
+out = cv2.VideoWriter(os.path.join(output_dir, "output_video.mp4"),
+                      cv2.VideoWriter_fourcc(*'mp4v'), fps,
+                      (frame_width, frame_height))
+
 while True:
     ret, frame = cap.read()
 
@@ -95,7 +100,7 @@ while True:
     # Draw detections
     combined_img = yolov8_detector.draw_detections(frame_resized)
 
-    # Save the frame with detections to the output video
+    # Save the frame with bounding boxes to the output video
     out.write(combined_img)
 
     # Crop and save bounding box region
@@ -122,9 +127,11 @@ while True:
 # Save the DataFrame to an Excel file
 paddleocr_df.to_excel("paddleocr_output.xlsx", index=False)
 
+out.release()
+
 # Release the video capture and writer objects
 cap.release()
-out.release()
+
 
 # Close the OpenCV window gracefully
 cv2.destroyAllWindows()
